@@ -158,7 +158,7 @@ const ProductSection: React.FC = () => {
     };
     return (
         <div className="sm:ml-[8%] ml-
-        [2%] sm:mr-[8%] mr-[2%]" id="products">
+        [2%] sm:mr-[8%] mr-[2%] mb-[4%]" id="products">
             <div>
                 <p className="text-center pt-[4%]">PRODUCTS</p>
                 <h1 className="text-[#25FD54] font-bold text-5xl text-center pb-[2%]">For You</h1>

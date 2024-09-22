@@ -3,6 +3,8 @@ import Navbar from "../components/common/header/navbar";
 import Statistics from "./statistics";
 import About from "./about";
 import ProductSection from "./productsSection";
+import Contacts from "./contacts";
+import Footer from "../components/common/footer";
 const LandingPage:React.FC = () => (
     <div className="">
         <Navbar/>
@@ -10,6 +12,8 @@ const LandingPage:React.FC = () => (
        <Statistics/>
        <About/>
        <ProductSection/>
+       <Contacts/>
+       <Footer/>
     </div>
 );
 

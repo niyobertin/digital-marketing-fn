@@ -61,10 +61,10 @@ const Navbar: React.FC = () => {
         {/* Links for Desktop */}
         <div className="hidden md:flex">
           <ul className="flex w-full justify-between items-center gap-12">
-            <li><a href="#">Home</a></li>
+            <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#products">Products</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="#contacts">Contact Us</a></li>
           </ul>
         </div>
 
@@ -80,10 +80,10 @@ const Navbar: React.FC = () => {
         } transition-transform duration-300`}
       >
         <ul className="mt-8 flex flex-col gap-4 p-4">
-          <li><a href="#" onClick={toggleSidebar}>Home</a></li>
+          <li><a href="#home" onClick={toggleSidebar}>Home</a></li>
           <li><a href="#about" onClick={toggleSidebar}>About</a></li>
           <li><a href="#products" onClick={toggleSidebar}>Products</a></li>
-          <li><a href="#" onClick={toggleSidebar}>Contact Us</a></li>
+          <li><a href="#contacts" onClick={toggleSidebar}>Contact Us</a></li>
           <li>
             <a
               href="#"
