@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
       {/* Header */}
       <div
         className={`fixed flex items-center w-full justify-between pt-5 pb-5 text-white z-50 transition-all duration-300 ${
-          isScrolled ? "bg-black opacity-70" : "bg-transparent"
+          isScrolled ? "bg-black" : "bg-transparent"
         }`}
       >
         <div className="flex items-center ml-[8%]">
@@ -68,8 +68,9 @@ const Navbar: React.FC = () => {
           </ul>
         </div>
 
-        <div className="hidden md:block mr-[8%] font-bold border border-[#EDFF81] p-[0.5%] rounded-[20px]">
-          <a href="#">Login/Sign up</a>
+        <div className="hidden md:flex justify-between gap-4 items-center mr-[8%] font-bold ">
+        <button className="p-[2%] bg-gradient-to-r from-[#98AA28] to-[#D6EF7E] font-bold rounded-[30px] px-8">Login</button>
+        <button className="p-[2%] bg-gradient-to-r from-[#98AA28] to-[#D6EF7E] font-bold  rounded-[30px] px-8">sign up</button>
         </div>
       </div>
 
@@ -85,12 +86,8 @@ const Navbar: React.FC = () => {
           <li><a href="#products" onClick={toggleSidebar}>Products</a></li>
           <li><a href="#contacts" onClick={toggleSidebar}>Contact Us</a></li>
           <li>
-            <a
-              href="#"
-              className="font-bold border border-[#EDFF81] p-[2%] rounded-[20px]"
-            >
-              Login/Sign up
-            </a>
+          <button className="p-[2%] bg-gradient-to-r from-[#98AA28] to-[#D6EF7E] font-bold sm:mb-[0%] mb-[10%] rounded-[30px] px-8">Login</button>
+          <button className="p-[2%] bg-gradient-to-r from-[#98AA28] to-[#D6EF7E] font-bold  rounded-[30px] px-8">sign up</button>
           </li>
         </ul>
       </div>

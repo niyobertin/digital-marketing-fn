@@ -2,7 +2,7 @@ import HeroSection from "../components/herosection";
 import Navbar from "../components/common/header/navbar";
 import Statistics from "./statistics";
 import About from "./about";
-import ProductSection from "./productsSection";
+import ProductsSection from "./productsSection";
 import Contacts from "./contacts";
 import Footer from "../components/common/footer";
 const LandingPage:React.FC = () => (
@@ -11,7 +11,7 @@ const LandingPage:React.FC = () => (
        <HeroSection/>
        <Statistics/>
        <About/>
-       <ProductSection/>
+       <ProductsSection/>
        <Contacts/>
        <Footer/>
     </div>

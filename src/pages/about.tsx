@@ -45,6 +45,7 @@ const About: React.FC = () => {
                     </p>
                 </div>
             </div>  
+            <div className="bg-[#25FD54] p-0.5 mt-[3%] mb-[2%] mr-[8%] ml-[8%]"></div>
         </div>
     );
 }

@@ -20,10 +20,16 @@ module.exports = {
             transform: "translateY(0)",
           },
         },
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
       },
       animation: {
         slidein: "slidein 1s ease var(--slidein-delay, 1) forwards",
         slideInLeft: 'slideInLeft 500ms ease-in-out var(--slidein-delay, 0ms) forwards', 
+        marquee: 'marquee 20s linear infinite',
+        paused: 'none',
       },
     },
   },
