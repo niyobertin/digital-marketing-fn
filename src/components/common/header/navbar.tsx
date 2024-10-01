@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logoImage from '../../../assets/image.png';
+import { Link } from 'react-router-dom';
+
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -69,8 +71,16 @@ const Navbar: React.FC = () => {
         </div>
 
         <div className="hidden md:flex justify-between gap-4 items-center mr-[8%] font-bold ">
-        <button className="p-[2%] bg-gradient-to-r from-[#98AA28] to-[#D6EF7E] font-bold rounded-[30px] px-8">Login</button>
-        <button className="p-[2%] bg-gradient-to-r from-[#98AA28] to-[#D6EF7E] font-bold  rounded-[30px] px-8">sign up</button>
+        <Link to="/login">
+              <button className="p-[2%] pb-[2%] bg-gradient-to-r from-[#98AA28] to-[#D6EF7E] font-bold rounded-[30px] px-8">
+                  Login
+              </button>
+          </Link>
+          <Link to="/register">
+              <button className="p-[2%] bg-gradient-to-r from-[#98AA28] to-[#D6EF7E] font-bold rounded-[30px] px-8">
+                  Sign Up
+              </button>
+          </Link>
         </div>
       </div>
 
@@ -86,8 +96,17 @@ const Navbar: React.FC = () => {
           <li><a href="#products" onClick={toggleSidebar}>Products</a></li>
           <li><a href="#contacts" onClick={toggleSidebar}>Contact Us</a></li>
           <li>
-          <button className="p-[2%] bg-gradient-to-r from-[#98AA28] to-[#D6EF7E] font-bold sm:mb-[0%] mb-[10%] rounded-[30px] px-8">Login</button>
-          <button className="p-[2%] bg-gradient-to-r from-[#98AA28] to-[#D6EF7E] font-bold  rounded-[30px] px-8">sign up</button>
+          <Link to="/login">
+              <button className="p-[2%] pb-[2%] bg-gradient-to-r from-[#98AA28] to-[#D6EF7E] font-bold rounded-[30px] px-8">
+                  Login
+              </button>
+          </Link>
+          <Link to="/register">
+              <button className="p-[2%] bg-gradient-to-r from-[#98AA28] to-[#D6EF7E] font-bold rounded-[30px] px-8">
+                  Sign Up
+              </button>
+          </Link>
+
           </li>
         </ul>
       </div>
