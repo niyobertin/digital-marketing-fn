@@ -9,7 +9,7 @@ import { AxiosError } from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/api/store";
 import auhtenticatinoImage from '../assets/signin.jpg';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface UserLogin {
     email: string;
@@ -17,6 +17,7 @@ interface UserLogin {
 }
 
 export const Login: React.FC = () => {
+    const navigate = useNavigate();
     const dispatch:AppDispatch = useDispatch();
     const loading = useSelector((state: RootState) => state.login.loading);
 
@@ -34,13 +35,18 @@ export const Login: React.FC = () => {
     const onSubmit: SubmitHandler<UserLogin> = async (user: UserLogin) => {
         try {
             const respose = await dispatch(userLogin(user)).unwrap();
-            console.log(respose)
             //@ts-ignore
              localStorage.setItem('accessToken',respose.token);
              //@ts-ignore
-             localStorage.setItem('loggedin_user',respose.data);
+             localStorage.setItem('loggedin_user', JSON.stringify(respose.data));
             toast.success("Welcome!");
             reset();
+            //@ts-ignore
+            if(respose.data.role === "admin" || respose.data.role === "admin") {
+                setTimeout(() => {
+                    navigate("/dashboard/seller");
+                  }, 3000);
+            }
         } catch (err) {
             const error = err as AxiosError;
             toast.error(`${error.message}`);
