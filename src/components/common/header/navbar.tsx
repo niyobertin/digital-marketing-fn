@@ -10,7 +10,17 @@ const Navbar: React.FC = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const loggedIn: any = localStorage.getItem('accessToken');
   const loggedInUserString:any = localStorage.getItem('loggedin_user');
-  const  loggedInUser = JSON.parse(loggedInUserString);
+  let loggedInUser;
+
+if (typeof loggedInUserString === 'string') {
+    try {
+        loggedInUser = JSON.parse(loggedInUserString);
+    } catch (error) {
+        console.error("Failed to parse JSON:", error);
+    }
+} else {
+    loggedInUser = loggedInUserString; 
+}
 
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
