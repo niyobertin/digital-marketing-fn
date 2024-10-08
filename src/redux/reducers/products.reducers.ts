@@ -1,6 +1,7 @@
 import { createSlice,createAsyncThunk,PayloadAction } from "@reduxjs/toolkit";
 import api from "../api/api";
 import { Product,productsState } from "../../types";
+import { AxiosError } from "axios";
 
 export const fetchProducts = createAsyncThunk<Product[], void, { rejectValue: string }>(
     'blogs/fetchBlogs',
@@ -12,6 +13,24 @@ export const fetchProducts = createAsyncThunk<Product[], void, { rejectValue: st
         return rejectWithValue(error.response?.data || 'An error occurred');
       }
     }
+);
+export const addProduct = createAsyncThunk(
+  "addProduct",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await api.post("/products", payload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
+      const data = await response.data;
+      return data;
+    } catch (err) {
+      const error = err as AxiosError;
+      return rejectWithValue(error.response?.data);
+    }
+  },
 );
 
 const initialState:productsState ={
@@ -32,11 +51,22 @@ const productsReducer = createSlice({
             state.isLoading = false;
             state.products = action.payload;
           })
-          .addCase(fetchProducts.rejected, (state, action: PayloadAction<string | undefined>) => {
+          .addCase(fetchProducts.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.payload || null;
           })
-    
+          .addCase(addProduct.pending,(state) => {
+            state.isLoading = true;
+        })
+        .addCase(addProduct.fulfilled, (state, action: PayloadAction<Product[]>) => {
+            state.isLoading = false;
+            state.products = action.payload;
+          })
+          //@ts-ignore
+          .addCase(addProduct.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message || null;
+          })
     }
 })
 

@@ -11,30 +11,33 @@ interface Product {
 }
 
 interface ProductsCardsProps {
+    productsPerPage:number,
     products: Product[];
     loading?: boolean;
 }
 
-const ProductsCards: React.FC<ProductsCardsProps> = ({ products, loading = false }) => {
+const ProductsCards: React.FC<ProductsCardsProps> = ({productsPerPage, products, loading = false }) => {
     return (
-        <div className="relative overflow-hidden w-full  group">
-            <div className="flex space-x-6 animate-marquee group-hover:animate-paused">
-                {(loading ? Array.from(new Array(4)) : products)?.map((product, index) => (
+        <div className="w-full">
+            <div className="grid sm:grid-cols-4 grid-cols-2 gap-6 cursor-pointer">
+                {(loading ? Array.from(new Array(8)) : products)?.slice(-productsPerPage).map((product, index) => (
                     <div
                         key={product ? product._id || index : index}
-                        className="flex-shrink-0 w-60 h-72 bg-white rounded-lg shadow-lg p-4 transform transition-transform hover:scale-105 hover:shadow-xl"
+                        className="flex-shrink-0 w-full h-76 bg-white rounded-lg shadow-lg p-4 transform transition-transform hover:scale-105 hover:shadow-xl"
                     >
                         {product ? (
                             <>
-                                <img
-                                    src={product.images[0]}
-                                    alt={product.name}
-                                    className="w-full h-40 object-cover rounded-lg mb-2 mx-auto"
-                                />
-                                <h2 className="text-xl font-bold mb-2">{product.name}</h2>
-                                <p className="text-lg mb-2">${product.price.toFixed(2)}</p>
-                                <div className="bg-[#25FD54] p-[1px] mt-[3%]"></div>
-                                <p className="text-sm  mb-4">
+                                 <div className="h-36">
+                                    <img
+                                        src={product.images[0]}
+                                        alt={product.name}
+                                        className="w-full h-full object-contain rounded-lg mb-2 mx-auto"
+                                    />
+                                </div>
+                                <h2 className="sm:text-xl text-normal font-bold mb-2">{product.name}</h2>
+                                <p className="Sm:text-lg text-normal mb-2">RWF{product.price.toFixed(2)}</p>
+                                <div className="bg-[#25FD54] p-[1px] mb-[3%]"></div>
+                                <p className="text-sm mb-4">
                                     Listed on: {new Date(product.createdAt).toLocaleDateString('en-US', {
                                         year: 'numeric',
                                         month: 'long',
