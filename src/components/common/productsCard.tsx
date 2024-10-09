@@ -1,5 +1,6 @@
 import React from 'react';
 import Skeleton from '@mui/material/Skeleton';
+import { useNavigate } from 'react-router-dom';
 
 interface Product {
     _id: string | null | undefined;
@@ -16,7 +17,14 @@ interface ProductsCardsProps {
     loading?: boolean;
 }
 
+
+
 const ProductsCards: React.FC<ProductsCardsProps> = ({productsPerPage, products, loading = false }) => {
+    const navigate = useNavigate();
+    const handleClick = (id: string) => {
+        navigate(`/products/${id}`);
+      };
+
     return (
         <div className="w-full">
             <div className="grid sm:grid-cols-4 grid-cols-2 gap-6 cursor-pointer">
@@ -24,6 +32,7 @@ const ProductsCards: React.FC<ProductsCardsProps> = ({productsPerPage, products,
                     <div
                         key={product ? product._id || index : index}
                         className="flex-shrink-0 w-full h-76 bg-white rounded-lg shadow-lg p-4 transform transition-transform hover:scale-105 hover:shadow-xl"
+                        onClick={() => product && handleClick(product._id!)}
                     >
                         {product ? (
                             <>
