@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logoImage from '../../../assets/image.png';
 import { Link } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa6";
+import { IoIosClock } from "react-icons/io";
 interface ProductNavbarProps {
   categories: string[]; 
   all:string;
@@ -46,6 +47,20 @@ const ProductNavbar: React.FC<ProductNavbarProps> = ({categories,all,onClick, on
       });
     }
   };
+  const [currentTime, setCurrentTime] = useState<string>('');
+  const updateTime = () => {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      setCurrentTime(`${hours}:${minutes}:${seconds}`);
+  };
+
+  useEffect(() => {
+      updateTime(); 
+      const intervalId = setInterval(updateTime, 1000);
+      return () => clearInterval(intervalId); 
+  }, []);
 
   return (
     <>
@@ -72,11 +87,12 @@ const ProductNavbar: React.FC<ProductNavbarProps> = ({categories,all,onClick, on
             </svg>
           </button>
         </div> 
-        <div className="flex justify-center gap-8 items-center ml-[15%]">
+        <div className="flex justify-center  items-center sm:ml-[8%] ml-[6%]">
           <Link to="/" className="flex items-center">
           <img src={logoImage} alt="logo" className="h-6" />
-          <span className="text-2xl font-bold">Nzamura</span>
+          <span className="text-2xl font-bold">NZAMURA</span>
           </Link>
+          <p className='flex items-center sm:text-normal text-sm gap-1 font-bold sm:ml-0 ml-[14%]'><span className="sm:block hidden"><IoIosClock size={25} /></span> {currentTime}</p>  
         </div>
         {!loggedIn ? (
                 <div className="relative ml-[25%] sm:hidden block">
@@ -100,8 +116,9 @@ const ProductNavbar: React.FC<ProductNavbarProps> = ({categories,all,onClick, on
               </div>
         ) : ''}
         {/* Links for Desktop */}
-        <div className="flex items-center justify-between mx-2 ml-[3%] w-[50%]">
-          <p className="sm:block hidden cursor-pointer hover:underline" onClick={onClick}>{all}</p>
+        <p className="sm:block hidden cursor-pointer hover:underline" onClick={onClick}>{all}</p>
+        <div className="flex items-center justify-between mx-2 ml-[0%] w-[50%]">
+         
       <ul 
         ref={scrollContainerRef} 
         className="sm:flex hidden overflow-x-auto whitespace-nowrap w-full scroll-smooth">
@@ -115,7 +132,9 @@ const ProductNavbar: React.FC<ProductNavbarProps> = ({categories,all,onClick, on
           </li>
         ))}
       </ul>
-      <button 
+    
+    </div>
+    <button 
         onClick={scrollLeft} 
         className="sm:block hidden px-1 bg-gray-400 text-white rounded-l hover:bg-gray-500 transition">
         {"<"}
@@ -125,7 +144,6 @@ const ProductNavbar: React.FC<ProductNavbarProps> = ({categories,all,onClick, on
         className="sm:block hidden px-1 bg-gray-400 text-white rounded-r hover:bg-gray-500 transition">
         {">"}
       </button>
-    </div>
     {!loggedIn ? (
         <div className="sm:flex md:flex hidden justify-between gap-4 items-center mr-[8%] font-bold">
           <Link to="/login">

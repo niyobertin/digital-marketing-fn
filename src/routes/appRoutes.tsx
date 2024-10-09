@@ -6,6 +6,7 @@ import { Register } from "../pages/registerPage";
 import { SellerDashboard } from "../pages/dashboard/seller";
 import { Dashboard } from "../pages/dashboard/dashboard";
 import Products from "../pages/products";
+import ProductDetails from "../pages/productsDetails";
 const AppRoutes: React.FC = () => {
     return (
       <Router>
@@ -16,6 +17,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/dashboard/add-products"element ={<SellerDashboard/>}/>
           <Route path="/dashboard"element ={<Dashboard/>}/>
           <Route path="/products"element ={<Products/>}/>
+          <Route path="/products/:id"element ={<ProductDetails/>}/>
         </Routes>
       </Router>
     );

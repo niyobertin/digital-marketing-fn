@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/api/store";
 import auhtenticatinoImage from '../assets/signin.jpg';
 import { Link, useNavigate } from "react-router-dom";
+import MainHeader from "../components/common/header/mainHeader";
 
 interface UserRegister {
     firstName: string;
@@ -53,6 +54,8 @@ export const Register: React.FC = () => {
     };
 
     return (
+        <div>
+            <MainHeader/>
         <div className="flex items-center justify-center h-screen">
             <div className="sm:block hidden">
                 <img src={auhtenticatinoImage} alt="login" />
@@ -121,6 +124,7 @@ export const Register: React.FC = () => {
                 </div>
             </div>
             <ToastContainer />
+        </div>
         </div>
     );
 };

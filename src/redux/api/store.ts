@@ -5,6 +5,7 @@ import usersReducers from '../reducers/athentications.reducer';
 export const store = configureStore({
     reducer:{
         products:productsReducers,
+        singleProduct:productsReducers,
         addProduct:productsReducers,
         login:usersReducers,
         register:usersReducers,

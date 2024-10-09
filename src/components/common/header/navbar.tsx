@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import logoImage from '../../../assets/image.png';
 import { Link } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa6";
+import { IoIosClock } from "react-icons/io";
 
 
 const Navbar: React.FC = () => {
@@ -49,6 +50,20 @@ if (typeof loggedInUserString === 'string') {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  const [currentTime, setCurrentTime] = useState<string>('');
+  const updateTime = () => {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      setCurrentTime(`${hours}:${minutes}:${seconds}`);
+  };
+
+  useEffect(() => {
+      updateTime(); 
+      const intervalId = setInterval(updateTime, 1000);
+      return () => clearInterval(intervalId); 
+  }, []);
 
   return (
     <>
@@ -80,8 +95,9 @@ if (typeof loggedInUserString === 'string') {
         <div className="flex items-center sm:ml-[8%] ml-0">
           <Link to="/" className="flex items-center">
             <img src={logoImage} alt="logo" className="h-6" />
-            <span className="text-2xl font-bold">Nzamura</span>
+            <span className="text-2xl font-bold">NZAMURA</span>
           </Link>
+          <p className='flex items-center sm:text-normal text-sm gap-1 font-bold ml-2'><span className="sm:block hidden"><IoIosClock size={25} /></span> {currentTime}</p>  
         </div>
         {!loggedIn ? (
                  <div className="relative mr-[8%] sm:hidden block">

@@ -1,16 +1,15 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import { AxiosError } from "axios";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 
 import Layout from "../../components/common/dashboardLayout";
 import TextInput from "../../components/common/textInput";
 import FileUpload from "../../components/common/fileUpload";
-// import productsReducers from "../../redux/reducers/products.reducers";
 import { addProduct } from "../../redux/reducers/products.reducers";
 import { productSchema } from "../../schema/productsSchema";
 import { RootState } from "../../redux/api/store";
@@ -21,17 +20,12 @@ export type ErrorType = {
 export const SellerDashboard = () => {
   const dispatch = useDispatch();
   const [files, setFiles] = useState<File[]>([]);
-  const [category, setCategory] = useState("Category");
-  const [categoryModal, setCategoryModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const isloading = useSelector((state: RootState) => state.addProduct.isLoading);
   
   const [existingImages, setExistingImages] = useState<string[]>([]);
   const [removeImages, setRemoveImages] = useState<string[]>([]);
-
-  const navigate = useNavigate();
-  
   const {
     register,
     handleSubmit,

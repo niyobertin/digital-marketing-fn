@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { RootState, AppDispatch } from "../redux/api/store";
 import { useDispatch, useSelector } from "react-redux";
 import ProductsCards from "../components/common/productsCard";
 import { fetchProducts } from "../redux/reducers/products.reducers";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface Product {
   _id: null | undefined;
@@ -30,6 +30,7 @@ const ProductsSection: React.FC = () => {
 
   //@ts-ignore
   productData = products.data;
+
   if (error) return <div>{error}</div>;
 
   return (
